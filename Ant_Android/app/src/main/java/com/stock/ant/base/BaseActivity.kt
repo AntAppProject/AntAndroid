@@ -7,7 +7,7 @@ import androidx.databinding.ViewDataBinding
 import com.stock.ant.BR
 
 abstract class BaseActivity<VB : ViewDataBinding, VM : BaseViewModel> : AppCompatActivity(){
-    protected lateinit var binding : VB
+    protected open lateinit var binding : VB
 
     protected abstract val viewModel : VM
     protected abstract val layoutRes : Int
