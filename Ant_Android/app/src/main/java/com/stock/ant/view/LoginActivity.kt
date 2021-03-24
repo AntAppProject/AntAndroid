@@ -34,12 +34,9 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     private val RC_SIGN_IN = 99
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+    override fun init() {
         val login = findViewById<ImageButton>(R.id.google_login_btn)
-        login.setOnClickListener {signIn()}
+        login.setOnClickListener { signIn() }
 
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestIdToken(getString(R.string.default_web_client_id))
@@ -49,58 +46,18 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         firebaseAuth = FirebaseAuth.getInstance()
-
     }
 
     public override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
-        if(account!==null){
+        if (account !== null) {
             toMainActivity(firebaseAuth.currentUser)
         }
     }
 
-    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        Log.e("request","request : $requestCode")
-        Log.e("request","request : $resultCode")
-        Log.e("request","request : $data")
-
-        if (requestCode == RC_SIGN_IN) {
-            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-            try {
-
-                val account = task.getResult(ApiException::class.java)
-                firebaseAuthWithGoogle(account!!)
-
-            } catch (e: ApiException) {
-
-                Log.w("LoginActivity", "Google sign in failed", e)
-            }
-        }
-    }
-
-    private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
-        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
-
-        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-        firebaseAuth.signInWithCredential(credential)
-            .addOnCompleteListener(this) { task ->
-                if (task.isSuccessful) {
-                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
-                    toMainActivity(firebaseAuth?.currentUser)
-                    val user = firebaseAuth.currentUser
-                    Log.d("account","account : ${user.email}")
-
-                } else {
-                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
-                    Toast.makeText(applicationContext, "로그인에 실패하였습니다.", Toast.LENGTH_LONG).show()
-                }
-            }
-    }
-
     private fun toMainActivity(user: FirebaseUser?) {
-        if(user !=null) { // MainActivity 로 이동
+        if (user != null) { // MainActivity 로 이동
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
@@ -109,10 +66,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
+
     }
+    
+    public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        Log.e("request", "request : $requestCode")
+        Log.e("request", "request : $resultCode")
+        Log.e("request", "request : $data")
 
-    override fun init() {
+        if (requestCode == RC_SIGN_IN) {
+            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+            try {
 
+                val account = task.getResult(ApiException::class.java)
+                viewModel.firebaseAuthWithGoogle(account!!,firebaseAuth)
+
+            } catch (e: ApiException) {
+
+                Log.w("LoginActivity", "Google sign in failed", e)
+            }
+        }
     }
 
     override fun observerViewModel() {

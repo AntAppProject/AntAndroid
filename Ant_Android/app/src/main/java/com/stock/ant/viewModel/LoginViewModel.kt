@@ -17,36 +17,23 @@ class LoginViewModel : BaseViewModel() {
     private val RC_SIGN_IN = 99
     private lateinit var firebaseAuth: FirebaseAuth
 
-//     fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-//
-//        if (requestCode == RC_SIGN_IN) {
-//            val task = GoogleSignIn.getSignedInAccountFromIntent(data)
-//
-//            try {
-//                val account = task.getResult(ApiException::class.java)
-//                firebaseAuthWithGoogle(account!!, firebaseAuth)
-//
-//            } catch (e: ApiException) {
-//                Log.w("LoginActivity", "Google sign in failed", e)
-//            }
-//        }
-//    }
-//
-//     fun firebaseAuthWithGoogle(acct: GoogleSignInAccount, firebaseAuth: FirebaseAuth) {
-//        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
-//
-//        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
-//        firebaseAuth.signInWithCredential(credential)
-//            .addOnCompleteListener { task ->
-//                if (task.isSuccessful) {
-//                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
-//                    val user = firebaseAuth.currentUser
-//                    Log.d("account", "account : ${user!!.email}")
-//
-//                } else {
-//                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
-//                     Log.e("로그인","로그인에 실패했습니다.")
-//                }
-//            }
-//    }
+
+
+     fun firebaseAuthWithGoogle(acct: GoogleSignInAccount, firebaseAuth: FirebaseAuth) {
+        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
+
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
+                    val user = firebaseAuth.currentUser
+                    Log.d("account", "account : ${user!!.email}")
+
+                } else {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
+                     Log.e("로그인","로그인에 실패했습니다.")
+                }
+            }
+    }
 }
