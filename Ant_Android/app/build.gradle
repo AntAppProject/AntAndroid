@@ -56,7 +56,7 @@ dependencies {
 
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.0"
-
+//room라이브러리
     kapt "androidx.room:room-compiler:2.2.6"
     testImplementation "androidx.room:room-testing:2.2.6"
     implementation "androidx.room:room-runtime:2.2.6"

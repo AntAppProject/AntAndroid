@@ -15,6 +15,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
+import com.google.firebase.ktx.Firebase
 import com.stock.ant.R
 import com.stock.ant.base.BaseActivity
 import com.stock.ant.databinding.ActivityLoginBinding
@@ -34,6 +35,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
 
     private val RC_SIGN_IN = 99
 
+    override fun observerViewModel() {
+
+    }
+
     override fun init() {
         val login = findViewById<ImageButton>(R.id.google_login_btn)
         login.setOnClickListener { signIn() }
@@ -46,8 +51,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
         firebaseAuth = FirebaseAuth.getInstance()
+
     }
 
+    //현재 로그인 되어 있는지 확인
     public override fun onStart() {
         super.onStart()
         val account = GoogleSignIn.getLastSignedInAccount(this)
@@ -56,31 +63,30 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         }
     }
 
+    // LoginActivity 로 이동
     private fun toMainActivity(user: FirebaseUser?) {
-        if (user != null) { // MainActivity 로 이동
+        if (user != null) {
             startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
 
+    //google login view 호출
     private fun signIn() {
         val signInIntent = googleSignInClient.signInIntent
         startActivityForResult(signInIntent, RC_SIGN_IN)
 
     }
-    
+
     public override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        Log.e("request", "request : $requestCode")
-        Log.e("request", "request : $resultCode")
-        Log.e("request", "request : $data")
 
         if (requestCode == RC_SIGN_IN) {
             val task = GoogleSignIn.getSignedInAccountFromIntent(data)
             try {
 
                 val account = task.getResult(ApiException::class.java)
-                viewModel.firebaseAuthWithGoogle(account!!,firebaseAuth)
+                viewModel.firebaseAuthWithGoogle(account!!, firebaseAuth)
 
             } catch (e: ApiException) {
 
@@ -89,7 +95,5 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
         }
     }
 
-    override fun observerViewModel() {
 
-    }
 }
