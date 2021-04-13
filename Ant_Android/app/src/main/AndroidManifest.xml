@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.stock.ant">
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -11,9 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="true"
         android:theme="@style/Theme.Ant_Android">
-        <activity
-            android:name=".view.MainActivity"
-            android:label="@string/title_activity_main"></activity>
+        <activity android:name=".view.MainActivity" />
         <activity android:name=".view.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

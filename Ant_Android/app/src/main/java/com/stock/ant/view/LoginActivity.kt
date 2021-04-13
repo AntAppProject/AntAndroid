@@ -1,26 +1,24 @@
 package com.stock.ant.view
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.ImageButton
-import android.widget.Toast
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
-import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
-import com.google.firebase.ktx.Firebase
 import com.stock.ant.R
 import com.stock.ant.base.BaseActivity
 import com.stock.ant.databinding.ActivityLoginBinding
 import com.stock.ant.viewModel.LoginViewModel
-import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
@@ -86,7 +84,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             try {
 
                 val account = task.getResult(ApiException::class.java)
-                viewModel.firebaseAuthWithGoogle(account!!, firebaseAuth)
+                firebaseAuthWithGoogle(account!!)
 
             } catch (e: ApiException) {
 
@@ -94,6 +92,25 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             }
         }
     }
+    fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
+        Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
 
+        val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
+        firebaseAuth.signInWithCredential(credential)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 성공", task.exception)
+                    val user = firebaseAuth.currentUser
+                    Log.d("account", "account : ${user!!.email}")
+                            val intent = Intent(this@LoginActivity,MainActivity::class.java)
+                            startActivity(intent)
+
+
+                } else {
+                    Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
+                    Log.e("로그인", "로그인에 실패했습니다.")
+                }
+            }
+    }
 
 }
