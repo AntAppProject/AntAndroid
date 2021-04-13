@@ -22,6 +22,7 @@ class LoginViewModel : BaseViewModel() {
                     val user = firebaseAuth.currentUser
                     Log.d("account", "account : ${user!!.email}")
 
+
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
                     Log.e("로그인", "로그인에 실패했습니다.")
