@@ -10,7 +10,6 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.stock.ant.R
 import com.stock.ant.base.BaseActivity
-import com.stock.ant.databinding.ActivityLoginBinding
 import com.stock.ant.databinding.ActivityMainBinding
 import com.stock.ant.viewModel.LoginViewModel
 import com.stock.ant.viewModel.MainViewModel

@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
     // LoginActivity 로 이동
     private fun toMainActivity(user: FirebaseUser?) {
         if (user != null) {
-            startActivity(Intent(this, LoginActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
             finish()
         }
     }
