@@ -25,9 +25,9 @@ class MainActivity : BaseActivity<ActivityMainBinding,MainViewModel>() {
         val actionBar = supportActionBar
         actionBar?.hide()
 
-        val navView: BottomNavigationView = findViewById(R.id.nav_view)
+        val navView: BottomNavigationView = findViewById(R.id.bottom_navigation)
 
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
         navView.setupWithNavController(navController)
     }

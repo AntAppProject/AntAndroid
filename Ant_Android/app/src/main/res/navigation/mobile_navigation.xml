@@ -7,40 +7,40 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.stock.ant.view.ui.home.HomeFragment"
+        android:name="com.stock.ant.view.HomeFragment"
         android:label="@string/title_home"
         tools:layout="@layout/fragment_home" >
         <action
             android:id="@+id/action_navigation_home_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            app:destination="@id/navigation_chart" />
         <action
             android:id="@+id/action_navigation_home_to_navigation_notifications"
-            app:destination="@id/navigation_notifications" />
+            app:destination="@id/navigation_attach_money" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.stock.ant.view.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" >
+        android:id="@+id/navigation_chart"
+        android:name="com.stock.ant.view.ChartFragment"
+        android:label="@string/title_chart"
+        tools:layout="@layout/fragment_chart" >
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_home"
             app:destination="@id/navigation_home" />
         <action
             android:id="@+id/action_navigation_dashboard_to_navigation_notifications"
-            app:destination="@id/navigation_notifications" />
+            app:destination="@id/navigation_attach_money" />
     </fragment>
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.stock.ant.view.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" >
+        android:id="@+id/navigation_attach_money"
+        android:name="com.stock.ant.view.AttatchMoneyFragment"
+        android:label="@string/title_attatch_money"
+        tools:layout="@layout/fragment_attatch_money" >
         <action
-            android:id="@+id/action_navigation_notifications_to_navigation_home"
+            android:id="@+id/action_navigation_attatch_money_to_navigation_home"
             app:destination="@id/navigation_home" />
         <action
-            android:id="@+id/action_navigation_notifications_to_navigation_dashboard"
-            app:destination="@id/navigation_dashboard" />
+            android:id="@+id/action_navigation_attatch_money_to_navigation_chart"
+            app:destination="@id/navigation_chart" />
     </fragment>
 </navigation>

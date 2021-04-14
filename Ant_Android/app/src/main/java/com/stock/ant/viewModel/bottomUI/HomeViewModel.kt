@@ -1,13 +1,13 @@
-package com.stock.ant.view.ui.dashboard
+package com.stock.ant.viewModel.bottomUI
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
-class DashboardViewModel : ViewModel() {
+class HomeViewModel : ViewModel() {
 
     private val _text = MutableLiveData<String>().apply {
-        value = "This is dashboard Fragment"
+        value = "메인화면"
     }
     val text: LiveData<String> = _text
 }

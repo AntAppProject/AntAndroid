@@ -1,7 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="9f4a425c-2cc7-4336-9642-38dc0a222d93" name="Default Changelist" comment="" />
+    <list default="true" id="9f4a425c-2cc7-4336-9642-38dc0a222d93" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/res/drawable/ic_attach_money.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/res/drawable/ic_chart_icon.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/res/drawable/ic_home_icon.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ant_Android/app/src/main/java/com/stock/ant/view/LoginActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/java/com/stock/ant/view/LoginActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ant_Android/app/src/main/java/com/stock/ant/view/MainActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/java/com/stock/ant/view/MainActivity.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ant_Android/app/src/main/res/layout/activity_main.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/res/layout/activity_main.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Ant_Android/app/src/main/res/menu/bottom_nav_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/Ant_Android/app/src/main/res/menu/bottom_nav_menu.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -18,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/Ant_Android" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="SvnConfiguration">
@@ -35,9 +44,10 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1614759284049">
-      <screen x="0" y="0" width="1536" height="824" />
+    <state x="2606" y="211" key="FileChooserDialogImpl" timestamp="1618365154918">
+      <screen x="1920" y="0" width="1920" height="1040" />
     </state>
     <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@0.0.1536.824" timestamp="1614759284049" />
+    <state x="2606" y="211" key="FileChooserDialogImpl/0.0.1536.824/1920.0.1920.1040@1920.0.1920.1040" timestamp="1618365154918" />
   </component>
 </project>

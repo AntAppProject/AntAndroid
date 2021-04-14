@@ -92,6 +92,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
             }
         }
     }
+
     fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Log.d("LoginActivity", "firebaseAuthWithGoogle:" + acct.id!!)
 
@@ -104,7 +105,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding, LoginViewModel>() {
                     Log.d("account", "account : ${user!!.email}")
                             val intent = Intent(this@LoginActivity,MainActivity::class.java)
                             startActivity(intent)
-
 
                 } else {
                     Log.w("LoginActivity", "firebaseAuthWithGoogle 실패", task.exception)
